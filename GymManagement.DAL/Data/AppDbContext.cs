@@ -1,4 +1,5 @@
 
+using GymManagement.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymManagement.DAL.Data
@@ -10,9 +11,16 @@ namespace GymManagement.DAL.Data
 
         }
 
+        // DbSets
+        public DbSet<User> Users { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Apply all configurations from assembly
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }
 }
