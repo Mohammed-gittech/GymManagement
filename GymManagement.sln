@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.BLL", "GymMan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.DAL", "GymManagement.DAL\GymManagement.DAL.csproj", "{681B25BB-80C6-42CA-9185-C72242B514F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymManagement.Tests", "GymManagement.Tests\GymManagement.Tests.csproj", "{2ED711AC-7E25-4CBA-A863-F107DCF710FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{681B25BB-80C6-42CA-9185-C72242B514F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{681B25BB-80C6-42CA-9185-C72242B514F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{681B25BB-80C6-42CA-9185-C72242B514F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ED711AC-7E25-4CBA-A863-F107DCF710FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED711AC-7E25-4CBA-A863-F107DCF710FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED711AC-7E25-4CBA-A863-F107DCF710FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED711AC-7E25-4CBA-A863-F107DCF710FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
