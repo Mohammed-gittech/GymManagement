@@ -43,7 +43,6 @@ namespace GymManagement.DAL.Repositories
         public void Delete(T entity)
         {
             entity.IsDeleted = true;
-            entity.DeletedAt = DateTime.UtcNow;
             _dbSet.Update(entity);
         }
 
