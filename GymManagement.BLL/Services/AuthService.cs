@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using GymManagement.BLL.DTOs.Auth;
+using GymManagement.BLL.Exceptions;
 using GymManagement.BLL.Services.Interfaces;
 using GymManagement.DAL.Entities;
 using GymManagement.DAL.Services;
@@ -40,7 +41,7 @@ namespace GymManagement.BLL.Services
 
                 // Validate user exists and password is correct
                 if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
-                    throw new Exception("اسم المستخدم أو كلمة المرور غير صحيحة");
+                    throw new UnauthorizedException("اسم المستخدم أو كلمة المرور غير صحيحة");
 
                 // Generate tokens
                 var jwtToken = GenerateJwtToken(user);
@@ -81,12 +82,12 @@ namespace GymManagement.BLL.Services
                 if (refreshToken == null ||
                     refreshToken.ExpiresAt < DateTime.UtcNow ||
                     refreshToken.RevokedAt != null)
-                    throw new Exception("التوكن غير صحيح أو منتهي أو ملغى");
+                    throw new UnauthorizedException("التوكن غير صحيح أو منتهي أو ملغى");
 
                 // Get user
                 var user = await _unitOfWork.Users.GetByIdAsync(refreshToken.UserId);
                 if (user == null)
-                    throw new Exception("المستخدم غير موجود");
+                    throw new NotFoundException("المستخدم غير موجود");
 
                 // Generate new tokens
                 var newJwtToken = GenerateJwtToken(user);
@@ -124,7 +125,7 @@ namespace GymManagement.BLL.Services
                 // Check if username already exists
                 var existingUser = await _unitOfWork.Users.GetByUsernameAsync(dto.Username);
                 if (existingUser != null)
-                    throw new Exception("اسم المستخدم موجود مسبقاً");
+                    throw new ValidationException("اسم المستخدم موجود مسبقاً");
 
                 // Create new user
                 var user = new User
@@ -172,10 +173,10 @@ namespace GymManagement.BLL.Services
 
             // Validate refresh token
             if (refreshToken == null)
-                throw new Exception("التوكن غير صحيح");
+                throw new UnauthorizedException("التوكن غير صحيح");
 
             if (refreshToken.RevokedAt != null)
-                throw new Exception("التوكن ملغى مسبقاً");
+                throw new ValidationException("التوكن ملغى مسبقاً");
 
             // Revoke token
             refreshToken.RevokedAt = DateTime.UtcNow;
