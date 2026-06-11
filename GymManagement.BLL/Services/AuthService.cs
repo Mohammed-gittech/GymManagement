@@ -18,16 +18,13 @@ namespace GymManagement.BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
-        private readonly ICurrentUserService _currentUserService;
 
         public AuthService(
             IUnitOfWork unitOfWork,
-            IConfiguration configuration,
-            ICurrentUserService currentUserService)
+            IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _configuration = configuration;
-            _currentUserService = currentUserService;
         }
 
 
