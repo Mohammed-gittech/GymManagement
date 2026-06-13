@@ -31,7 +31,7 @@ namespace GymManagement.DAL.Data.Configurations
 
             builder.HasIndex(u => u.Username)
                 .IsUnique()
-                .HasFilter("\"IsDeleted\" = false");
+                .HasFilter("[IsDeleted] = 0");
         }
     }
 }

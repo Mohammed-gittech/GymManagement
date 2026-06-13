@@ -1,6 +1,7 @@
 
 using System.Reflection;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using GymManagement.BLL.Services;
 using GymManagement.BLL.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace GymManagement.BLL
 
             // Register validators from assembly
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddFluentValidationAutoValidation();
             return services;
         }
     }
