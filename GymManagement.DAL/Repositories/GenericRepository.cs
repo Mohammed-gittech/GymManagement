@@ -25,6 +25,11 @@ namespace GymManagement.DAL.Repositories
             .FirstOrDefaultAsync(e => e.Id == id);
         }
 
+        public async Task<T?> GetByIdTrackedAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
         // Get all entities
         public async Task<IEnumerable<T>> GetAllAsync()
         {

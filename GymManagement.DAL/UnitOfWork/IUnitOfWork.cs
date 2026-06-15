@@ -8,6 +8,7 @@ namespace GymManagement.DAL.UnitOfWork
         // Repositories
         IUserRepository Users { get; }
         IRefreshTokenRepository RefreshTokens { get; }
+        ISubscriptionPlanRepository SubscriptionPlans { get; }
 
         // Save changes
         Task<int> SaveChangesAsync();

@@ -27,6 +27,9 @@ namespace GymManagement.DAL
             // Register UnitOfWork
             services.AddScoped<IUnitOfWork, DALUnitOfWork.UnitOfWork>();
 
+            // Register SubscriptionPlan
+            services.AddScoped<ISubscriptionPlanRepository, SubscriptionPlanRepository>();
+
             // Register CurrentUserService
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
