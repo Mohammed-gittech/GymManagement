@@ -80,7 +80,5 @@ namespace GymManagement.BLL.Services
             _unitOfWork.SubscriptionPlans.Delete(plan);
             await _unitOfWork.SaveChangesAsync();
         }
-
-
     }
 }
