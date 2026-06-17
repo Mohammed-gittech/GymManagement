@@ -5,6 +5,7 @@ namespace GymManagement.BLL.Services.Interfaces
 {
     public interface ISubscriptionPlanService
     {
+        Task<SubscriptionPlanResponseDto> GetByIdAsync(int id);
         Task<IEnumerable<SubscriptionPlanResponseDto>> GetAllAsync();
         Task<SubscriptionPlanResponseDto> CreateAsync(CreateSubscriptionPlanDto dto);
         Task<SubscriptionPlanResponseDto> UpdateAsync(UpdateSubscriptionPlanDto dto, int id);

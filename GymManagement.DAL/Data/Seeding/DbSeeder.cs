@@ -21,6 +21,39 @@ namespace GymManagement.DAL.Data.Seeding
                 context.Users.Add(admin);
                 await context.SaveChangesAsync();
             }
+
+            // Seed default subscription plans
+            if (!context.SubscriptionPlans.Any())
+            {
+                var plans = new List<SubscriptionPlan>
+
+                {
+                    new SubscriptionPlan
+                    {
+                        Name = "شهري",
+                        Price = 50,
+                        DurationDays = 30,
+                        CreatedBy = 0
+                    },
+                    new SubscriptionPlan
+                    {
+                        Name = "ربعي",
+                        Price = 140,
+                        DurationDays = 90,
+                        CreatedBy = 0
+                    },
+                    new SubscriptionPlan
+                    {
+                        Name = "سنوي",
+                        Price = 500,
+                        DurationDays = 365,
+                        CreatedBy = 0
+                    }
+                };
+
+                context.SubscriptionPlans.AddRange(plans);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

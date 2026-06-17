@@ -14,6 +14,17 @@ namespace GymManagement.BLL.Services
         {
             _unitOfWork = unitOfWork;
         }
+
+        public async Task<SubscriptionPlanResponseDto> GetByIdAsync(int id)
+        {
+            // Get plan by id
+            var plan = await _unitOfWork.SubscriptionPlans.GetByIdAsync(id);
+            if (plan == null)
+                throw new NotFoundException("الباقة غير موجودة");
+
+            // Return response
+            return plan.ToDto();
+        }
         public async Task<IEnumerable<SubscriptionPlanResponseDto>> GetAllAsync()
         {
             // Get all subscription plans

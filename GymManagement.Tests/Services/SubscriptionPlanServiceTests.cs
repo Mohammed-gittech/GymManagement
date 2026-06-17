@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using GymManagement.BLL.DTOs.SubscriptionPlans;
 using GymManagement.BLL.Exceptions;
 using GymManagement.BLL.Services;
@@ -23,6 +24,7 @@ namespace GymManagement.Tests.Services
             _subscriptionPlan = new SubscriptionPlanService(_unitOfWork);
         }
 
+        // Get All
         [Fact]
         public async Task GetAllAsync_ShouldReturnsAllSubscriptionPlan()
         {
@@ -64,6 +66,46 @@ namespace GymManagement.Tests.Services
             Assert.Equal(3, result.Count());
         }
 
+        // Get By ID
+        [Fact]
+        public async Task GetByIdAsync_WithExistingSubscriptionPlan_ReturnsSubscriptionPlanResponseDto()
+        {
+            // Arrange 
+            var plan = new SubscriptionPlan
+            {
+                Id = 1,
+                Name = "Plan",
+                Price = 25000,
+                DurationDays = 30
+            };
+
+            _unitOfWork.SubscriptionPlans
+                .GetByIdAsync(1)
+                .Returns(plan);
+
+            // Act
+            var result = await _subscriptionPlan.GetByIdAsync(1);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Id);
+            Assert.Equal(25000, result.Price);
+            Assert.NotEmpty(result.Name);
+        }
+
+        [Fact]
+        public async Task GetByIdAsync_WithNonExistingSubscriptionPlan_ThrowsNotFoundException()
+        {
+            // Arrange
+            _unitOfWork.SubscriptionPlans
+                .GetByIdAsync(Arg.Any<int>())
+                .Returns((SubscriptionPlan?)null);
+
+            // Act + Assert
+            await Assert.ThrowsAsync<NotFoundException>(() => _subscriptionPlan.GetByIdAsync(1));
+        }
+
+        // Create
         [Fact]
         public async Task CreateAsync_ShouldReturnSubscriptionPlanResponseDto()
         {
@@ -122,6 +164,7 @@ namespace GymManagement.Tests.Services
             await Assert.ThrowsAsync<ValidationException>(() => _subscriptionPlan.CreateAsync(dto));
         }
 
+        // Update
         [Fact]
         public async Task UpdateAsync_ShouldReturnSubscriptionPlanResponseDto()
         {
@@ -219,6 +262,7 @@ namespace GymManagement.Tests.Services
             await Assert.ThrowsAsync<ValidationException>(() => _subscriptionPlan.UpdateAsync(dto, 1));
         }
 
+        // Delete
         [Fact]
         public async Task DeleteAsync_WithExistingSubscrptionPlan_DeletesSuccessfully()
         {
