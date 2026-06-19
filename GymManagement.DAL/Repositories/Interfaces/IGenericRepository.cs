@@ -1,5 +1,6 @@
 
 using GymManagement.DAL.Entities.Common;
+using GymManagement.DAL.Helpers;
 
 namespace GymManagement.DAL.Repositories.Interfaces
 {
@@ -8,6 +9,7 @@ namespace GymManagement.DAL.Repositories.Interfaces
         Task<T?> GetByIdAsync(int id);
         Task<T?> GetByIdTrackedAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<PagedResponse<T>> GetPagedAsync(PaginationParams paginationParams);
 
         void Add(T entity);
         void Update(T entity);
