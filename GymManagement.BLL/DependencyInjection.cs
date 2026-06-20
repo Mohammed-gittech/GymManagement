@@ -20,6 +20,9 @@ namespace GymManagement.BLL
             // Register SubscriptionPlan
             services.AddScoped<ISubscriptionPlanService, SubscriptionPlanService>();
 
+            // Register MemberService
+            services.AddScoped<IMemberService, MemberService>();
+
             // Register validators from assembly
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddFluentValidationAutoValidation();
