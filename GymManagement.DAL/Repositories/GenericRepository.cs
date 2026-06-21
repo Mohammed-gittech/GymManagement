@@ -49,6 +49,7 @@ namespace GymManagement.DAL.Repositories
             // Get items for the requested page
             var items = await _dbSet
                 .AsNoTracking()
+                .OrderBy(e => e.Id)
                 .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)
                 .Take(paginationParams.PageSize)
                 .ToListAsync();
