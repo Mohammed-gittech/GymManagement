@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using GymManagement.BLL.DTOs.SubscriptionPlans;
 using GymManagement.BLL.Exceptions;
 using GymManagement.BLL.Services;
