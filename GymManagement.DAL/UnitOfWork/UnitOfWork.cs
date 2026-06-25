@@ -16,6 +16,7 @@ namespace GymManagement.DAL.UnitOfWork
         private IRefreshTokenRepository? _refreshTokens;
         private ISubscriptionPlanRepository? _subscriptionPlans;
         private IMemberRepository? _members;
+        private ISubscriptionRepository? _subscriptions;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -34,6 +35,9 @@ namespace GymManagement.DAL.UnitOfWork
 
         public IMemberRepository Members =>
             _members ??= new MemberRepository(_context);
+
+        public ISubscriptionRepository Subscriptions =>
+            _subscriptions ??= new SubscriptionRepository(_context);
 
         // Save changes
         public async Task<int> SaveChangesAsync()
