@@ -22,6 +22,11 @@ namespace GymManagement.BLL.Services
             if (existingPlan == null)
                 throw new NotFoundException("الباقة غير موجودة");
 
+            var existingMember = await _unitOfWork.Members.GetByIdAsync(dto.MemberId);
+
+            if (existingMember == null)
+                throw new NotFoundException("المشترك غير موجود");
+
             var activeSubscription = await _unitOfWork.Subscriptions.GetActiveByMemberIdAsync(dto.MemberId);
 
             if (activeSubscription != null)
@@ -41,7 +46,6 @@ namespace GymManagement.BLL.Services
                 await _unitOfWork.BeginTransactionAsync();
                 try
                 {
-                    _unitOfWork.Subscriptions.Update(activeSubscription);
                     _unitOfWork.Subscriptions.Add(newSubscription);
                     await _unitOfWork.SaveChangesAsync();
                     await _unitOfWork.CommitTransactionAsync();
