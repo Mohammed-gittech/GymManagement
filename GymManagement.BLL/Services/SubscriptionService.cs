@@ -31,7 +31,7 @@ namespace GymManagement.BLL.Services
 
             if (activeSubscription != null)
             {
-                var remainingDays = (activeSubscription.EndDate - DateTime.UtcNow).Days;
+                var remainingDays = (int)Math.Ceiling((activeSubscription.EndDate - DateTime.UtcNow).TotalDays);
 
                 activeSubscription.EndDate = DateTime.UtcNow;
 
