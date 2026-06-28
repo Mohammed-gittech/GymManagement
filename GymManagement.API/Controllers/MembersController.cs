@@ -67,6 +67,7 @@ namespace GymManagement.API.Controllers
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> Delete(int id)
         {
             await _memberService.DeleteAsync(id);

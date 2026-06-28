@@ -36,6 +36,9 @@ namespace GymManagement.DAL
             // Register SubscriptionResponse
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
+            // Register Payment
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+
             // Register CurrentUserService
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();

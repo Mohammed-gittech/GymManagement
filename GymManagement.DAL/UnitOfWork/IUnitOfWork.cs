@@ -11,6 +11,7 @@ namespace GymManagement.DAL.UnitOfWork
         ISubscriptionPlanRepository SubscriptionPlans { get; }
         IMemberRepository Members { get; }
         ISubscriptionRepository Subscriptions { get; }
+        IPaymentRepository Payments { get; }
 
         // Save changes
         Task<int> SaveChangesAsync();

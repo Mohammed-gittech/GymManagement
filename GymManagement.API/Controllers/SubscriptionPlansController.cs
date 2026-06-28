@@ -39,6 +39,7 @@ namespace GymManagement.API.Controllers
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<SubscriptionPlanResponseDto>> Create(CreateSubscriptionPlanDto dto)
         {
             var result = await _planService.CreateAsync(dto);
@@ -53,6 +54,7 @@ namespace GymManagement.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<SubscriptionPlanResponseDto>> Update(UpdateSubscriptionPlanDto dto, int id)
         {
             var result = await _planService.UpdateAsync(dto, id);
@@ -63,6 +65,7 @@ namespace GymManagement.API.Controllers
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> Delete(int id)
         {
             await _planService.DeleteAsync(id);

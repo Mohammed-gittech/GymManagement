@@ -21,6 +21,7 @@ namespace GymManagement.DAL.Data
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

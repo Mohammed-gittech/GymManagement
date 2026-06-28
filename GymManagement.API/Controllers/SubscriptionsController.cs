@@ -37,6 +37,5 @@ namespace GymManagement.API.Controllers
             return StatusCode(StatusCodes.Status201Created, ApiResponse<SubscriptionResponseDto>.Ok(result, "تم انشاء الاشتراك بنجاح"));
         }
 
-
     }
 }
